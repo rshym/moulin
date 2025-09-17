@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 
 def _run_cmd(args):
-    log.info("Running %s", " ".join(args))
+    log.debug("Running %s", " ".join(args))
     subprocess.run(args, check=True)
 
 
@@ -40,7 +40,7 @@ def dd(file_in: Union[str, BinaryIO],
         f"of={file_out.name}",
         f"bs={blocksize}",
         f"seek={out_offset // blocksize}",
-        "status=progress",
+        "status=noxfer",
         "conv=notrunc",
     ]  # yapf: disable
     if sparse:
